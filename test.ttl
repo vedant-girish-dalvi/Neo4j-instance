@@ -1,54 +1,23 @@
 @prefix cdo: <https://w3id.org/damagemodels/cdo#> .
+@prefix ex: <http://example.org/damages/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 
 #################################################################
-#    Custom Data Properties
+#    Instances
 #################################################################
 
-### Crack Height
-cdo:crackHeight rdf:type owl:DatatypeProperty ;
-    rdfs:domain cdo:Crack ;
-    rdfs:range xsd:decimal ;
-    rdfs:comment "Defines the height of the crack region. Unit: mm"@en ;
-    rdfs:label "crack height"@en .
+# Crack Instance
+ex:damage001 a cdo:Crack ;
+    cdo:crackWidth "2.5"^^xsd:decimal ;
+    cdo:crackHeight "40.0"^^xsd:decimal .
 
-### Crack Width (already defined in base ontology)
+# Spalling Instance
+ex:damage002 a cdo:Spalling ;
+    cdo:spallingHeight "20.0"^^xsd:decimal ;
+    cdo:spallingWidth "15.0"^^xsd:decimal ;
+    cdo:spallingArea "300.0"^^xsd:decimal .
 
-### Spalling Width
-cdo:spallingWidth rdf:type owl:DatatypeProperty ;
-    rdfs:domain cdo:Spalling ;
-    rdfs:range xsd:decimal ;
-    rdfs:comment "Defines the width of a spalling region. Unit: mm"@en ;
-    rdfs:label "spalling width"@en .
-
-### Spalling Height
-cdo:spallingHeight rdf:type owl:DatatypeProperty ;
-    rdfs:domain cdo:Spalling ;
-    rdfs:range xsd:decimal ;
-    rdfs:comment "Defines the height of a spalling region. Unit: mm"@en ;
-    rdfs:label "spalling height"@en .
-
-### Rust Area (for Reinforcement Corrosion)
-cdo:rustArea rdf:type owl:DatatypeProperty ;
-    rdfs:domain cdo:ReinforcementCorrosion ;
-    rdfs:range xsd:decimal ;
-    rdfs:comment "Defines the visible surface area of rust (reinforcement corrosion). Unit: mm²"@en ;
-    rdfs:label "rust area"@en .
-
-#################################################################
-#    Example Instances (Optional)
-#################################################################
-
-You may define example instances like this if needed:
-:crack1 a cdo:Crack ;
-    cdo:crackWidth "1.5"^^xsd:decimal ;
-    cdo:crackHeight "45.0"^^xsd:decimal .
-
-:spall1 a cdo:Spalling ;
-    cdo:spallingWidth "25.0"^^xsd:decimal ;
-    cdo:spallingHeight "30.0"^^xsd:decimal .
-
-:rust1 a cdo:ReinforcementCorrosion ;
+# Rust Instance (Reinforcement Corrosion)
+ex:damage003 a cdo:ReinforcementCorrosion ;
     cdo:rustArea "120.0"^^xsd:decimal .
