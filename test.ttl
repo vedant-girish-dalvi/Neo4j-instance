@@ -41,14 +41,14 @@ cdo:rustArea rdf:type owl:DatatypeProperty ;
 #    Example Instances (Optional)
 #################################################################
 
-# You may define example instances like this if needed:
-# :crack1 a cdo:Crack ;
-#     cdo:crackWidth "1.5"^^xsd:decimal ;
-#     cdo:crackHeight "45.0"^^xsd:decimal .
+You may define example instances like this if needed:
+:crack1 a cdo:Crack ;
+    cdo:crackWidth "1.5"^^xsd:decimal ;
+    cdo:crackHeight "45.0"^^xsd:decimal .
 
-# :spall1 a cdo:Spalling ;
-#     cdo:spallingWidth "25.0"^^xsd:decimal ;
-#     cdo:spallingHeight "30.0"^^xsd:decimal .
+:spall1 a cdo:Spalling ;
+    cdo:spallingWidth "25.0"^^xsd:decimal ;
+    cdo:spallingHeight "30.0"^^xsd:decimal .
 
-# :rust1 a cdo:ReinforcementCorrosion ;
-#     cdo:rustArea "120.0"^^xsd:decimal .
+:rust1 a cdo:ReinforcementCorrosion ;
+    cdo:rustArea "120.0"^^xsd:decimal .
