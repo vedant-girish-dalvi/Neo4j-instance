@@ -2,6 +2,7 @@
 @prefix ex: <http://example.org/damages/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 #################################################################
 #    Instances
@@ -21,3 +22,38 @@ ex:damage002 a cdo:Spalling ;
 # Rust Instance (Reinforcement Corrosion)
 ex:damage003 a cdo:ReinforcementCorrosion ;
     cdo:rustArea "120.0"^^xsd:decimal .
+
+#################################################################
+#    Object Properties (Simple Relationships)
+#################################################################
+
+# Define a simple "causes" relationship between crack and spalling
+ex:damage001 ex:causes ex:damage002 .
+
+# Define a "coOccursWith" relationship between crack and corrosion
+ex:damage001 ex:coOccursWith ex:damage003 .
+
+# Define a "observedNear" relationship between spalling and corrosion
+ex:damage002 ex:observedNear ex:damage003 .
+
+#################################################################
+#    Object Property Declarations (Optional but Recommended)
+#################################################################
+
+ex:causes rdf:type rdf:Property ;
+    rdfs:domain cdo:Crack ;
+    rdfs:range cdo:Spalling ;
+    rdfs:label "causes"@en ;
+    rdfs:comment "Indicates that one damage causes another."@en .
+
+ex:coOccursWith rdf:type rdf:Property ;
+    rdfs:domain cdo:Crack ;
+    rdfs:range cdo:ReinforcementCorrosion ;
+    rdfs:label "co-occurs with"@en ;
+    rdfs:comment "Indicates the damages are observed in the same region."@en .
+
+ex:observedNear rdf:type rdf:Property ;
+    rdfs:domain cdo:Spalling ;
+    rdfs:range cdo:ReinforcementCorrosion ;
+    rdfs:label "observed near"@en ;
+    rdfs:comment "Indicates physical proximity between damages."@en .
