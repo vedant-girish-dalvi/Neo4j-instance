@@ -1,3 +1,4 @@
+@prefix ex: <http://example.org/damages/> .
 @prefix cdo: <https://w3id.org/damagemodels/cdo#> .
 @prefix dce: <http://purl.org/dc/elements/1.1/> .
 @prefix dco: <https://w3id.org/dco#> .
