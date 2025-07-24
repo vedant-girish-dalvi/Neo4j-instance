@@ -69,11 +69,11 @@ cdo:Crack rdf:type owl:Class ;
 		rdfs:label "Crack"@en
 	   
 ###  https://w3id.org/damagemodels/cdo#Spalling
-cdo:Spalling rdf:type owl:Class ;
-		rdfs:subClassOf dot:ClassifiedDamage ;
-		rdfs:comment "A defect where the concrete is slowly broken down into small flakes known as spalls from a larger solidified concrete body."@en ;
-		rdfs:isDefinedBy cdo: ;
-		rdfs:label "Spalling"@en .
+# cdo:Spalling rdf:type owl:Class ;
+# 		rdfs:subClassOf dot:ClassifiedDamage ;
+# 		rdfs:comment "A defect where the concrete is slowly broken down into small flakes known as spalls from a larger solidified concrete body."@en ;
+# 		rdfs:isDefinedBy cdo: ;
+# 		rdfs:label "Spalling"@en .
 	   
 #################################################################
 #    Damage Instances
@@ -85,12 +85,12 @@ ex:crack_001 rdf:type cdo:Crack ;
     cdo:crackSpacing "3.7"^^xsd:decimal .
 	
 # Spalling instance
-ex:spalling_001 a cdo:Spalling ;
-    cdo:spallingArea "300.0"^^xsd:decimal .
+# ex:spalling_001 a cdo:Spalling ;
+#     cdo:spallingArea "300.0"^^xsd:decimal .
 
 #################################################################
 #    Relationships
 #################################################################
 
 #Crack causes Spalling
-ex:crack_001 ex:causes ex:spalling_001 .
+# ex:crack_001 ex:causes ex:spalling_001 .
