@@ -79,12 +79,12 @@ cdo:Spalling rdf:type owl:Class ;
 #    Damage Instances
 #################################################################
 
-#Crack instance
+# Crack instance
 ex:crack_001 rdf:type cdo:Crack ;
     cdo:crackWidth "2.0"^^xsd:decimal ;
     cdo:crackSpacing "3.7"^^xsd:decimal .
 	
-Spalling instance
+# Spalling instance
 ex:spalling_001 a cdo:Spalling ;
     cdo:spallingArea "300.0"^^xsd:decimal .
 
@@ -92,5 +92,5 @@ ex:spalling_001 a cdo:Spalling ;
 #    Relationships
 #################################################################
 
-#Crack causes Spalling
+# Crack causes Spalling
 ex:crack_001 ex:causes ex:spalling_001 .
