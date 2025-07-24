@@ -63,17 +63,17 @@ cdo:crackWidth rdf:type owl:DatatypeProperty ;
 
 ###  https://w3id.org/damagemodels/cdo#Crack
 cdo:Crack rdf:type owl:Class ;
-       rdfs:subClassOf dot:ClassifiedDamage ;
-       rdfs:comment "A defect that defines a discontinuity in the structure due to material failuer / exceeding the breaking strength of the material."@en ;
-       rdfs:isDefinedBy cdo: ;
-	   rdfs:label "Crack"@en
+		rdfs:subClassOf dot:ClassifiedDamage ;
+		rdfs:comment "A defect that defines a discontinuity in the structure due to material failuer / exceeding the breaking strength of the material."@en ;
+		rdfs:isDefinedBy cdo: ;
+		rdfs:label "Crack"@en
 	   
 ###  https://w3id.org/damagemodels/cdo#Spalling
 cdo:Spalling rdf:type owl:Class ;
-          rdfs:subClassOf dot:ClassifiedDamage ;
-          rdfs:comment "A defect where the concrete is slowly broken down into small flakes known as spalls from a larger solidified concrete body."@en ;
-          rdfs:isDefinedBy cdo: ;
-		  rdfs:label "Spalling"@en .
+		rdfs:subClassOf dot:ClassifiedDamage ;
+		rdfs:comment "A defect where the concrete is slowly broken down into small flakes known as spalls from a larger solidified concrete body."@en ;
+		rdfs:isDefinedBy cdo: ;
+		rdfs:label "Spalling"@en .
 	   
 #################################################################
 #    Damage Instances
