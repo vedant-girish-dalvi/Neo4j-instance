@@ -67,7 +67,7 @@ cdo:Crack rdf:type owl:Class ;
 		rdfs:subClassOf dot:ClassifiedDamage ;
 		rdfs:comment "A defect that defines a discontinuity in the structure due to material failuer / exceeding the breaking strength of the material."@en ;
 		rdfs:isDefinedBy cdo: ;
-		rdfs:label "Crack"@en
+		rdfs:label "Crack"@en .
 	   
 ###  https://w3id.org/damagemodels/cdo#Spalling
 cdo:Spalling rdf:type owl:Class ;
