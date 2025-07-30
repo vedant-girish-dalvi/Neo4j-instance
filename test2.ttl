@@ -1,0 +1,196 @@
+@prefix ex: <http://example.org/damageInstances#> .
+@prefix cdo: <https://w3id.org/damagemodels/cdo#> .
+@prefix dce: <http://purl.org/dc/elements/1.1/> .
+@prefix dco: <https://w3id.org/dco#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix dcterms: <http://purl.org/dc/terms> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix dot: <https://w3id.org/dot#> .
+@prefix ifc: <https://standards.buildingsmart.org/IFC/DEV/IFC4_2/OWL#> .
+
+<https://w3id.org/damagemodels/cdo#> rdf:type owl:Ontology , voaf:Vocabulary ;
+    dcterms:creator [
+      rdf:type foaf:Person ;
+      foaf:name "Vedant Dalvi" ;
+    ] ;
+    owl:versionIRI <https://w3id.org/damagemodels/cdo#/0.5.0> ;
+    owl:versionInfo "0.5.0" ;
+    rdfs:comment """- Version 0.5.0: 
+* completed ontology metadata wrt LOV
+* made top CDO damage classification classes subclasses of dot:ClassifiedDamage
+"""@en ;
+    dcterms:license "https://creativecommons.org/licenses/by/1.0" ;
+    dcterms:description "Ontology for damage and defects in reinforced concrete."@en ;
+    dcterms:modified "2019-12-17"^^xsd:date ;
+    dcterms:issued "2018-10-25"^^xsd:date ;
+    dcterms:title "Concrete Damage Ontology"@en ;
+    vann:example "https://madsholten.github.io/sparql-visualizer/?file=https://raw.githubusercontent.com/Alhakam/dot/master/ABox-Examples/dot-demo.json"^^xsd:anyURI ;
+    vann:example "https://raw.githubusercontent.com/Alhakam/dot/master/ABox-Examples/dotSampleData_pt2.ttl"^^xsd:anyURI ;
+    vann:preferredNamespacePrefix "cdo" ;
+    vann:preferredNamespaceUri "https://w3id.org/damagemodels/cdo#" .
+
+#################################################################
+#    Additional Properties and Relationships
+#################################################################
+
+cdo:hasCoordinates rdf:type owl:DatatypeProperty ;
+    rdfs:domain dot:ClassifiedDamage ;
+    rdfs:range xsd:string ;
+    rdfs:label "has coordinates"@en ;
+    rdfs:comment "Geometric coordinates of the damage instance (e.g., polygon or point as string)."@en .
+
+cdo:isStructural rdf:type owl:DatatypeProperty ;
+    rdfs:domain dot:ClassifiedDamage ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "is structural"@en ;
+    rdfs:comment "Indicates whether the damage is structural (true) or non-structural (false)."@en .
+
+cdo:damageLocatedOn rdf:type owl:ObjectProperty ;
+    rdfs:domain dot:ClassifiedDamage ;
+    rdfs:range cdo:BuildingElement ;
+    rdfs:label "damage located on"@en ;
+    rdfs:comment "Relates a damage instance to the structural element it occurs on."@en .
+
+#################################################################
+#    Building Element Classes
+#################################################################
+
+cdo:BuildingElement rdf:type owl:Class ;
+    rdfs:label "Building Element"@en .
+
+cdo:Beam rdf:type owl:Class ;
+    rdfs:subClassOf cdo:BuildingElement ;
+    rdfs:label "Beam"@en ;
+    owl:equivalentClass ifc:IfcBeam .
+
+cdo:Column rdf:type owl:Class ;
+    rdfs:subClassOf cdo:BuildingElement ;
+    rdfs:label "Column"@en ;
+    owl:equivalentClass ifc:IfcColumn .
+
+cdo:Wall rdf:type owl:Class ;
+    rdfs:subClassOf cdo:BuildingElement ;
+    rdfs:label "Wall"@en ;
+    owl:equivalentClass ifc:IfcWall .
+
+cdo:Slab rdf:type owl:Class ;
+    rdfs:subClassOf cdo:BuildingElement ;
+    rdfs:label "Slab"@en ;
+    owl:equivalentClass ifc:IfcSlab .
+
+#################################################################
+#    Updated Damage Instances with Geometry & Type
+#################################################################
+
+ex:crack_001 rdf:type cdo:Crack ;
+    cdo:crackWidth "2.0"^^xsd:decimal ;
+    cdo:crackSpacing "3.7"^^xsd:decimal ;
+    cdo:hasCoordinates "POLYGON((10 10, 20 10, 20 20, 10 20, 10 10))" ;
+    cdo:isStructural true ;
+    cdo:damageLocatedOn ex:beam_001 .
+
+ex:spalling_001 a cdo:Spalling ;
+    cdo:spallingArea "300.0"^^xsd:decimal ;
+    cdo:hasCoordinates "POINT(25 30)" ;
+    cdo:isStructural true ;
+    cdo:damageLocatedOn ex:column_001 .
+
+ex:alligatorCrack_001 rdf:type cdo:AlligatorCrack ; 
+    cdo:crackWidth "0.8"^^xsd:decimal ;
+    cdo:crackSpacing "3.5"^^xsd:decimal ;
+    cdo:hasCoordinates "POLYGON((5 5, 15 5, 15 15, 5 15, 5 5))" ;
+    cdo:isStructural true .
+
+ex:wetspot_001 rdf:type cdo:Wetspot ;  
+    cdo:wetnessLevel "0.7"^^xsd:decimal ;
+    cdo:hasCoordinates "POINT(12 18)" ;
+    cdo:isStructural false .
+
+ex:efflorescence_001 rdf:type cdo:Efflorescence ;  
+    cdo:efflorescenceArea "120.0"^^xsd:decimal ;
+    cdo:hasCoordinates "POLYGON((30 30, 40 30, 40 40, 30 40, 30 30))" ;
+    cdo:isStructural false .
+
+ex:rust_001 rdf:type cdo:Rust ;  
+    cdo:rustArea "85.0"^^xsd:decimal ;
+    cdo:hasCoordinates "POINT(35 10)" ;
+    cdo:isStructural true ;
+    cdo:damageLocatedOn ex:column_001 .
+
+ex:rockpocket_001 rdf:type cdo:Rockpocket ; 
+    cdo:rockpocketDepth "12.0"^^xsd:decimal ;
+    cdo:hasCoordinates "POINT(50 22)" ;
+    cdo:isStructural true .
+
+ex:hollowareas_001 rdf:type cdo:Hollowareas ;
+    cdo:hollowVolume "250.0"^^xsd:decimal ;
+    cdo:hasCoordinates "POLYGON((45 45, 55 45, 55 55, 45 55, 45 45))" ;
+    cdo:isStructural true .
+
+ex:cavity_001 rdf:type cdo:Cavity ;  
+    cdo:cavityWidth "15.0"^^xsd:decimal ;
+    cdo:cavityDepth "10.0"^^xsd:decimal ;
+    cdo:hasCoordinates "POINT(60 60)" ;
+    cdo:isStructural true .
+
+ex:graffiti_001 rdf:type cdo:Graffiti ;  
+    cdo:graffitiArea "20.0"^^xsd:decimal ;
+    cdo:hasCoordinates "POLYGON((70 70, 80 70, 80 80, 70 80, 70 70))" ;
+    cdo:isStructural false ;
+    cdo:damageLocatedOn ex:wall_001 .
+
+ex:weathering_001 rdf:type cdo:Weathering ; 
+    cdo:weatheringSeverity "moderate" ;
+    cdo:hasCoordinates "POINT(15 55)" ;
+    cdo:isStructural false ;
+    cdo:damageLocatedOn ex:slab_001 .
+
+ex:restformwork_001 rdf:type cdo:Restformwork ;  
+    cdo:residueThickness "2.5"^^xsd:decimal ;
+    cdo:hasCoordinates "POINT(20 60)" ;
+    cdo:isStructural false .
+
+ex:exposedRebars_001 rdf:type cdo:ExposedRebars ; 
+    cdo:exposureLength "30.0"^^xsd:decimal ;
+    cdo:hasCoordinates "LINESTRING(5 0, 5 10)" ;
+    cdo:isStructural true .
+
+#################################################################
+#    Building Element Instances
+#################################################################
+
+ex:beam_001 rdf:type cdo:Beam ;
+    rdfs:label "Main Beam 1" .
+
+ex:column_001 rdf:type cdo:Column ;
+    rdfs:label "Corner Column" .
+
+ex:wall_001 rdf:type cdo:Wall ;
+    rdfs:label "South Wall" .
+
+ex:slab_001 rdf:type cdo:Slab ;
+    rdfs:label "First Floor Slab" .
+
+#################################################################
+#    Damage Relationships
+#################################################################
+
+# Crack causes Spalling
+ex:crack_001 cdo:causes ex:spalling_001 .
+
+# Rust causes Exposed Rebars
+ex:rust_001 cdo:causes ex:exposedRebars_001 .
+
+# Wetspot has origin in Efflorescence
+ex:wetspot_001 cdo:hasOriginIn ex:efflorescence_001 .
+
+# Alligator Crack coexists with Rockpocket
+ex:alligatorCrack_001 cdo:coexistsWith ex:rockpocket_001 .
+
+# Cavity causes Hollowareas
+ex:cavity_001 cdo:causes ex:hollowareas_001 .
